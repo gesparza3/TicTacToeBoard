@@ -36,9 +36,9 @@ TEST(TicTacToeBoardTest, toggleO)
 	ASSERT_EQ(whose_turn == X, true);
 }
 
-TEST(TicTacToeBoardTest, isPlaced)
+TEST(TicTacToeBoardTest, isFirstPlaced)
 {
 	TicTacToeBoard b;
 	Piece whose_turn = b.placePiece(1, 1);
-	
+	ASSERT_EQ(whose_turn == X, true)
 }

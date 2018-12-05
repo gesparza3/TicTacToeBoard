@@ -40,6 +40,12 @@ Piece TicTacToeBoard::toggleTurn()
 **/ 
 Piece TicTacToeBoard::placePiece(int row, int column)
 {
+  if (board[i][j] == ' ')
+  {
+    Piece new_place = turn;
+    board[i][j] = new_place;
+    return new_place;
+  }
   return Invalid;
 }
 
