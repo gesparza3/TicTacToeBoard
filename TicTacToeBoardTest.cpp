@@ -40,5 +40,27 @@ TEST(TicTacToeBoardTest, isFirstPlaced)
 {
 	TicTacToeBoard b;
 	Piece whose_turn = b.placePiece(1, 1);
-	ASSERT_EQ(whose_turn == X, true)
+	ASSERT_EQ(whose_turn == X, true);
+}
+
+TEST(TicTacToeBoardTest, getBlankPiece)
+{
+	TicTacToeBoard b;
+	Piece blank_piece = b.getPiece(2, 1);
+	ASSERT_EQ(blank_piece == Blank, true);
+}
+
+TEST(TicTacToeBoardTest, getInvalidPiece)
+{
+	TicTacToeBoard b;
+	Piece invalid_piece = b.getPiece(BOARDSIZE + 1, 1);
+	ASSERT_EQ(invalid_piece == Invalid, true);
+}
+
+TEST(TicTacToeBoardTest, getPlacedPiece)
+{
+	TicTacToeBoard b;
+	Piece blank_piece = b.placePiece(2, 1);
+	Piece new_piece = b.getPiece(2, 1);
+	ASSERT_EQ(blank_piece == new_piece, true);
 }

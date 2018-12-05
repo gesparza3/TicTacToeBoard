@@ -10,29 +10,21 @@
         -:    5:**/
         -:    6:
         -:    7://Constructor sets an empty board and specifies it is X's turn first
-function _ZN14TicTacToeBoardC2Ev called 3 returned 100% blocks executed 100%
-        3:    8:TicTacToeBoard::TicTacToeBoard()
+        5:    8:TicTacToeBoard::TicTacToeBoard()
         -:    9:{
-        3:   10:  turn = X;
-       12:   11:  for(int i=0; i<BOARDSIZE; i++)
-branch  0 taken 75%
-branch  1 taken 25% (fallthrough)
-       36:   12:    for(int j=0; j<BOARDSIZE; j++)
-branch  0 taken 75%
-branch  1 taken 25% (fallthrough)
-       27:   13:      board[i][j] = Blank;
-        3:   14:}
+        5:   10:  turn = X;
+       20:   11:  for(int i=0; i<BOARDSIZE; i++)
+       60:   12:    for(int j=0; j<BOARDSIZE; j++)
+       45:   13:      board[i][j] = Blank;
+        5:   14:}
         -:   15:
         -:   16:/**
         -:   17: * Switches turn member variable to represent whether it's X's or O's turn
         -:   18: * and returns whose turn it is
         -:   19:**/
-function _ZN14TicTacToeBoard10toggleTurnEv called 3 returned 100% blocks executed 100%
         3:   20:Piece TicTacToeBoard::toggleTurn()
         -:   21:{
         3:   22:  if (turn == X)
-branch  0 taken 67% (fallthrough)
-branch  1 taken 33%
         -:   23:  {
         2:   24:    turn = O;
         2:   25:    return O;
@@ -51,28 +43,35 @@ branch  1 taken 33%
         -:   38: * is over, no more pieces can be placed so attempting to place a piece
         -:   39: * should neither change the board nor change whose turn it is.
         -:   40:**/ 
-function _ZN14TicTacToeBoard10placePieceEii called 1 returned 100% blocks executed 100%
-        1:   41:Piece TicTacToeBoard::placePiece(int row, int column)
+        2:   41:Piece TicTacToeBoard::placePiece(int row, int column)
         -:   42:{
-        1:   43:  return Invalid;
-        -:   44:}
-        -:   45:
-        -:   46:/**
-        -:   47: * Returns what piece is at the provided coordinates, or Blank if there
-        -:   48: * are no pieces there, or Invalid if the coordinates are out of bounds
-        -:   49:**/
-function _ZN14TicTacToeBoard8getPieceEii called 0 returned 0% blocks executed 0%
-    #####:   50:Piece TicTacToeBoard::getPiece(int row, int column)
-        -:   51:{
-    #####:   52:  return Invalid;
-        -:   53:}
-        -:   54:
-        -:   55:/**
-        -:   56: * Returns which Piece has won, if there is a winner, Invalid if the game
-        -:   57: * is not over, or Blank if the board is filled and no one has won.
-        -:   58:**/
-function _ZN14TicTacToeBoard9getWinnerEv called 0 returned 0% blocks executed 0%
-    #####:   59:Piece TicTacToeBoard::getWinner()
-        -:   60:{
-    #####:   61:  return Invalid;
-        -:   62:}
+        2:   43:  if (board[row][column] == ' ')
+        -:   44:  {
+        2:   45:    Piece new_place = turn;
+        2:   46:    board[row][column] = new_place;
+        2:   47:    return new_place;
+        -:   48:  }
+    #####:   49:  return Invalid;
+        -:   50:}
+        -:   51:
+        -:   52:/**
+        -:   53: * Returns what piece is at the provided coordinates, or Blank if there
+        -:   54: * are no pieces there, or Invalid if the coordinates are out of bounds
+        -:   55:**/
+        2:   56:Piece TicTacToeBoard::getPiece(int row, int column)
+        -:   57:{
+        2:   58:  if (board[row][column] == ' ')
+        1:   59:    return Blank;
+        1:   60:  if (row > BOARDSIZE || column > BOARDSIZE)
+    #####:   61:    return Invalid;
+        1:   62:  return board[row][column];
+        -:   63:}
+        -:   64:
+        -:   65:/**
+        -:   66: * Returns which Piece has won, if there is a winner, Invalid if the game
+        -:   67: * is not over, or Blank if the board is filled and no one has won.
+        -:   68:**/
+    #####:   69:Piece TicTacToeBoard::getWinner()
+        -:   70:{
+    #####:   71:  return Invalid;
+        -:   72:}
